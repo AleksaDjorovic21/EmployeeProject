@@ -1,0 +1,40 @@
+﻿@model List<EmployeeProject.Models.AggregatedEmployeeInfo>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Time Worked</title>
+    <style>
+        .low-hours {
+            background-color: #fdd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee Time Worked</h1>
+    <table class="table" border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Total Time Worked (hours)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var employee in Model)
+                {
+                    <tr class="@(employee.TotalTimeWorkedInHours < 100 ? "low-hours" : "")">
+                        <td>@employee.EmployeeName</td>
+                        <td>@employee.TotalTimeWorkedInHours.ToString("F2") Hrs</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr><td colspan="2">No employee data available.</td></tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
