@@ -1,7 +1,10 @@
-using EmployeeProject.Models;
+using System.Linq;
+using System.Threading.Tasks;
+using EmployeeProject.Application.Services;
+using EmployeeProject.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EmployeeProject.Controllers;
+namespace EmployeeProject.Presentation.Controllers;
 
 public class EmployeeController(TimeWorkedService timeWorkedService) : Controller
 {

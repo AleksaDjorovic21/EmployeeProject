@@ -1,4 +1,4 @@
-namespace EmployeeProject.Models;
+namespace EmployeeProject.Core.Models;
 
 public class AggregatedEmployeeInfo
 {

@@ -1,6 +1,7 @@
+using System;
 using System.Text.Json.Serialization;
 
-namespace EmployeeProject.Models;
+namespace EmployeeProject.Core.Models;
 
 public class EmployeeInfo
 {

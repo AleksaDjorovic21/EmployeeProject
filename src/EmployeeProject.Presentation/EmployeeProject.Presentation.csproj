@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>EmployeeProject.Presentation</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EmployeeProject.Application\EmployeeProject.Application.csproj" />
+  </ItemGroup>
+
+</Project>
