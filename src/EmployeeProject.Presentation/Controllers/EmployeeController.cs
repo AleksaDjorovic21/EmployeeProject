@@ -1,14 +1,18 @@
+using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using EmployeeProject.Application.Services;
+using EmployeeProject.Core.Interface;
 using EmployeeProject.Core.Models;
 using Microsoft.AspNetCore.Mvc;
+using EmployeeProject.Application.Interface;
 
 namespace EmployeeProject.Presentation.Controllers;
 
-public class EmployeeController(TimeWorkedService timeWorkedService) : Controller
+public class EmployeeController(ITimeWorkedService timeWorkedService, IChartGenerator chartGenerator) : Controller
 {
-    private readonly TimeWorkedService _timeWorkedService = timeWorkedService;
+    private readonly ITimeWorkedService _timeWorkedService = timeWorkedService;
+    private readonly IChartGenerator _chartGenerator = chartGenerator;
 
     public async Task<IActionResult> Index()
     {
@@ -24,6 +28,23 @@ public class EmployeeController(TimeWorkedService timeWorkedService) : Controlle
             })
             .OrderByDescending(e => e.TotalTimeWorkedInHours)
             .ToList();
+
+        if (!aggregatedEmployees.Any())
+        {
+            Console.WriteLine("No data to generate pie chart.");
+        }
+        else
+        {
+            Console.WriteLine("Data for pie chart:");
+            foreach (var emp in aggregatedEmployees)
+            {
+                Console.WriteLine($"{emp.EmployeeName}: {emp.TotalTimeWorkedInHours} hours");
+            }
+        }
+
+        // Generate the pie chart
+        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "EmployeeTimeWorkedChart.png");
+        _chartGenerator.GeneratePieChart(aggregatedEmployees, filePath);
 
         return View("Index", aggregatedEmployees);
     }

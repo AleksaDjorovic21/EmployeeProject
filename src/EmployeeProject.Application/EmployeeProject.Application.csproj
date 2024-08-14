@@ -9,4 +9,8 @@
     <ProjectReference Include="..\EmployeeProject.Core\EmployeeProject.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="SkiaSharp" Version="2.88.8" />
+  </ItemGroup>
+
 </Project>

@@ -3,12 +3,14 @@ using EmployeeProject.Core.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using EmployeeProject.Application.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Register HttpClient and TimeWorkedService
 builder.Services.AddHttpClient<TimeWorkedService>();
 builder.Services.AddScoped<ITimeWorkedService, TimeWorkedService>();
+builder.Services.AddScoped<IChartGenerator, ChartGenerator>();
 
 // Add services to the container
 builder.Services.AddControllersWithViews();
